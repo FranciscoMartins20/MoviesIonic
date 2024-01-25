@@ -1,0 +1,117 @@
+<ion-app>
+  <ion-content fullscreen="true">
+    <ion-header collapse="fade">
+      <ion-toolbar>
+
+        
+           <ion-buttons >
+            <ion-button autoHide="false" href="/" style="text-decoration: none;">TopFilm</ion-button>
+
+            <ion-button autoHide="false" href="/movies-page" style="text-decoration: none;">Movies</ion-button>
+
+            <ion-button autoHide="false" href="/series-page" style="text-decoration: none;">Series</ion-button>
+          
+          </ion-buttons>
+      
+
+        </ion-toolbar>
+        
+
+  
+      <ion-toolbar>
+        <ion-searchbar animated  class="search_input" type="search" placeholder="Movies and Series..." [(ngModel)]="search"  (search)="getSearchBoth()"></ion-searchbar>
+      </ion-toolbar>
+  
+  
+    </ion-header>
+    
+     
+    
+    <style>
+  ion-toolbar {
+  margin: 10px 0;
+  }
+  </style>
+  
+<!-- Criar navbar separado! -->
+
+  <div class="ion-padding">
+  <ion-grid>
+  <ion-col size="3">
+  <ion-badge color="light">Movies</ion-badge>
+  </ion-col>
+  </ion-grid>
+  </div>
+  <ion-slides pager="true">
+  <ion-slide class="card " *ngFor="let MoviesPopular of MoviesPopular.results.slice(0,5)">
+    <ion-grid class="movie">
+      <ion-row>
+        <ion-col size="12" class="poster-col">
+
+
+
+
+          <div class="img1">
+            <a href="film-details/{{ MoviesPopular.id }}">
+              <img
+                class="movie_poster"
+                src="https://image.tmdb.org/t/p/w500/{{ MoviesPopular.poster_path }}"S
+                alt=""
+              />
+            </a>
+          </div>
+
+        </ion-col>
+        <ion-col>
+          <h5 class="ion-no-margin">{{ MoviesPopular.title }}</h5>
+          <p class="ion-no-margin-rate">
+            <ion-icon name="star"></ion-icon>{{MoviesPopular.vote_average}}/10
+          </p>
+          <p class="date">{{MoviesPopular.release_date}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    </ion-slide>
+    </ion-slides >
+ 
+ 
+  
+  <ion-col size="3">
+    <ion-badge color="light">Series</ion-badge>
+  </ion-col>
+  
+  
+  <ion-slides pager="true" reset="true">
+  <ion-slide *ngFor="let Series of Series.results.slice(0,5)">
+    <ion-grid class="serie">
+      <ion-row>
+        <ion-col size="12" class="poster-col">
+
+
+          <div class="img1">
+            <a href="serie-details/{{ Series.id }}">
+              <img
+                class="movie_poster"
+                src="https://image.tmdb.org/t/p/w500/{{ Series.poster_path }}"
+                alt=""
+              />
+            </a>
+          </div>
+
+        </ion-col>
+        <ion-col>
+          <h5 class="ion-no-margin">{{ Series.name }}</h5>
+          <p class="ion-no-margin-rate">
+            <ion-icon name="star"></ion-icon>{{Series.vote_average}}/10
+          </p>
+          <p class="date">{{Series.release_time}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-slide>
+  </ion-slides>
+</ion-content>
+</ion-app>
+
+

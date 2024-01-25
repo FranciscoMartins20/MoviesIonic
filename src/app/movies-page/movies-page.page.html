@@ -1,0 +1,150 @@
+<ion-app>
+  <ion-content fullscreen="true">
+    <ion-header collapse="fade">
+      <ion-toolbar>
+        <!-- <ion-item href="/">TopFilm</ion-item>
+        <ion-item  href="/movies-page">Movies</ion-item>
+        <ion-item href="/series-page">Series</ion-item> -->
+        
+           <ion-buttons >
+            <ion-button autoHide="false" href="/" fill="clear">TopFilm</ion-button>
+
+            <ion-button autoHide="false" href="/movies-page">Movies</ion-button>
+
+            <ion-button autoHide="false" href="/series-page">Series</ion-button>
+          
+          </ion-buttons>
+      
+
+        </ion-toolbar>
+        
+
+  
+      <ion-toolbar>
+        <ion-searchbar animated  class="search_input" type="search" placeholder="Movies" [(ngModel)]="search"  (search)="getSearchMovies()"></ion-searchbar>
+      </ion-toolbar>
+  
+  
+    </ion-header>
+    
+     
+    
+    <style>
+  ion-toolbar {
+  margin: 10px 0;
+  }
+  </style>
+
+    <div class="ion-padding">
+      <ion-grid>
+      <ion-col size="3">
+      <ion-badge color="light">All the movies listed bellow:</ion-badge>
+      </ion-col>
+      </ion-grid>
+      </div>
+      <ion-slides pager="true">
+      <ion-slide class="card " *ngFor="let MoviesNow of MoviesNow.results.slice(0,10)">
+        <ion-grid class="movie">
+          <ion-row>
+            <ion-col size="12" class="poster-col">
+    
+    
+    
+    
+              <div class="img1">
+                <a href="film-details/{{ MoviesNow.id }}">
+                  <img
+                    class="movie_poster"
+                    src="https://image.tmdb.org/t/p/w500/{{ MoviesNow.poster_path }}"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <div class="catagory">Movies</div>
+            </ion-col>
+            <ion-col>
+              <h5 class="ion-no-margin">{{ MoviesNow.title }}</h5>
+              <p class="ion-no-margin-rate">
+                <ion-icon name="star"></ion-icon>{{MoviesNow.popularity}}
+              </p>
+              <p class="date">{{MoviesNow.release_date}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+        </ion-slide>
+        </ion-slides >
+        <div class="ion-padding">
+      <ion-grid>
+      <ion-col size="3">
+      <ion-badge color="light">All the movies listed bellow:</ion-badge>
+      </ion-col>
+      </ion-grid>
+      </div>
+
+
+      <ion-slides pager="true">
+      <ion-slide class="card " *ngFor="let Movies of MoviesNow.results.slice(10,20)">
+        <ion-grid class="movie">
+          <ion-row>
+            <ion-col size="12" class="poster-col">
+    
+    
+    
+    
+              <div class="img1">
+                <a href="film-details/{{ Movies.id }}">
+                  <img
+                    class="movie_poster"
+                    src="https://image.tmdb.org/t/p/w500/{{ Movies.poster_path }}"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <div class="catagory">Movies</div>
+            </ion-col>
+            <ion-col>
+              <h5 class="ion-no-margin">{{ Movies.title }}</h5>
+              <p class="ion-no-margin-rate">
+                <ion-icon name="star"></ion-icon>{{Movies.popularity}}
+              </p>
+              <p class="date">{{Movies.release_date}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+        </ion-slide>
+        </ion-slides >
+
+
+
+        
+        <!-- Pagination -->
+  <div class="demo"  >
+    <nav class="pagination-outer" aria-label="Page navigation">
+      <ul class="pagination">
+
+          <ion-button
+            (click)="changePagMinus()"
+            class="page-link"
+            aria-label="Anterior"
+          >
+            <span aria-hidden="true">«</span>
+          </ion-button>
+      
+          <ion-label class="pagination"> Page: {{pag}}  </ion-label>
+    
+          <ion-button
+            (click)="changePagPlus()"
+            class="page-link"
+            aria-label="Seguinte"
+          >
+            <span aria-hidden="true">»</span>
+          </ion-button>
+     
+      </ul>
+    </nav>
+  </div>
+
+</ion-content>
+</ion-app>

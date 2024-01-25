@@ -1,0 +1,62 @@
+<ion-app>
+  <ion-header collapse="fade">
+    <ion-toolbar>
+      <ion-title slot="start">
+        <a href="/" style="text-decoration: none; color: white"
+          >TopFilm</a
+        ></ion-title
+      >
+    </ion-toolbar>
+  </ion-header>
+
+  <style>
+    ion-toolbar {
+      margin: 10px 0;
+    }
+  </style>
+
+  <ion-content>
+    <ion-grid>
+      <img
+        sizes="small"
+        src="https://image.tmdb.org/t/p/w500/{{ Movies.poster_path }}"
+      />
+
+      <div class="movie-title">{{ Movies.title }}</div>
+      <div class="movie-detail">
+        <div class="set">
+          <label>Release Date :</label>
+          <span>{{ Movies.release_date }}</span>
+        </div>
+        <div class="set">
+          <label>Running Time :</label>
+          <span>{{ Movies.runtime }} minutes</span>
+        </div>
+        <div>
+          <label>Genre :</label>
+          <span *ngFor="let genres of Movies.genres">| {{ genres.name }} </span>
+        </div>
+        <div class="set">
+          <label>Rating :</label>
+          <span> {{ Movies.vote_average }}* </span>
+        </div>
+      </div>
+      <div class="movie-description">{{ Movies.overview }}</div>
+      <br />
+      <br /><br />
+      <div class="movie-cast">
+        <div class="header">Cast</div>
+        <div class="list">
+          <div class="cast" *ngFor="let cast of Credits.cast.slice(0, 6)">
+            <img
+              src="https://image.tmdb.org/t/p/w500/{{
+                cast.profile_path
+              }}"
+            />
+            <label>{{ cast.name }}</label>
+          </div>
+        </div>
+      </div>
+    </ion-grid>
+  </ion-content>
+</ion-app>

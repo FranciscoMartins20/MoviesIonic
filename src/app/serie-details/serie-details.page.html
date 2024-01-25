@@ -1,0 +1,68 @@
+<ion-app>
+  <ion-content fullscreen="true">
+    
+      <ion-header collapse="fade">
+        <ion-toolbar>
+          <ion-title slot="start" > <a href="/" style="text-decoration: none; color:white" >TopFilm</a></ion-title>
+          
+   
+            <ion-buttons slot="start">
+              <ion-back-button></ion-back-button>
+            </ion-buttons>
+          
+        </ion-toolbar>
+
+      </ion-header>
+    
+    <style>
+  ion-toolbar {
+  margin: 10px 0;
+  }
+  </style>
+            <img
+              src="https://image.tmdb.org/t/p/w500/{{ Series.poster_path }}"
+              alt=""
+            />
+         
+
+          <div class="info">
+            <div class="movie-title">{{ Series.name }}</div>
+            <div class="movie-detail">
+              <div class="set">
+                <label>Release Date :</label>
+                <span>{{ Series.first_air_date }}</span>
+              </div>
+              <div class="set">
+                <label>Running Time :</label>
+                <span>{{ Series.episode_run_time }} minutes</span>
+              </div>
+              <div class="set">
+                <label>Genre :</label>
+                <span *ngFor="let genres of Series.genres"
+                  >| {{ genres.name }}
+                </span>
+              </div>
+              <div class="set">
+                <label>Rating :</label>
+                <span>| {{ Series.vote_average }} </span>
+              </div>
+            </div>
+            <div class="movie-description">
+              {{ Series.overview }}
+            </div>
+            <div class="movie-cast">
+              <div class="header">Cast</div>
+              <div class="list">
+                <div class="cast" *ngFor="let cast of Credits.cast.slice(0, 6)">
+                  <img
+                    src="https://image.tmdb.org/t/p/w500/{{
+                      cast.profile_path
+                    }}"
+                  />
+                  <label>{{ cast.name }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+</ion-content>
+        </ion-app>

@@ -1,0 +1,128 @@
+<ion-app>
+  <ion-content fullscreen="true">
+    <ion-header collapse="fade">
+      <ion-toolbar>
+        <!-- <ion-item href="/">TopFilm</ion-item>
+        <ion-item  href="/movies-page">Movies</ion-item>
+        <ion-item href="/series-page">Series</ion-item> -->
+        
+           <ion-buttons >
+            <ion-button autoHide="false" href="/" fill="clear">TopFilm</ion-button>
+
+            <ion-button autoHide="false" href="/movies-page">Movies</ion-button>
+
+            <ion-button autoHide="false" href="/series-page">Series</ion-button>
+          
+          </ion-buttons>
+      
+
+        </ion-toolbar>
+        
+
+  
+      <ion-toolbar>
+        <ion-searchbar animated  class="search_input" type="search" placeholder="Series..." [(ngModel)]="search"  (search)="getSearchSeries()"></ion-searchbar>
+      </ion-toolbar>
+  
+  
+    </ion-header>
+    
+     
+    
+    <style>
+  ion-toolbar {
+  margin: 10px 0;
+  }
+  </style>
+
+    <!-- Serach bar -->
+    <ion-badge color="light">All the Series listed bellow:</ion-badge>
+    <ion-slides pager="true">
+      
+      <ion-slide *ngFor="let SeriesNow of SeriesNow.results.slice(0,10)">
+        <ion-grid class="serie">
+          <ion-row>
+            <ion-col size="12" class="poster-col">
+    
+    
+              <div class="img1">
+                <a href="serie-details/{{ SeriesNow.id }}">
+                  <img
+                    class="movie_poster"
+                    src="https://image.tmdb.org/t/p/w500/{{ SeriesNow.poster_path }}"
+                    alt=""
+                  />
+                </a>
+              </div>
+    
+            </ion-col>
+            <ion-col>
+              <h5 class="ion-no-margin">{{ SeriesNow.name }}</h5>
+              <div class="catagory">Séries</div>
+              <p class="ion-no-margin-rate">
+                <ion-icon name="star"></ion-icon>{{SeriesNow.popularity}}
+              </p>
+              <p class="date">{{SeriesNow.release_time}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+      </ion-slides>
+
+      <ion-slides pager="true" >
+        <ion-slide *ngFor="let SeriesNow of SeriesNow.results.slice(10,20)">
+          <ion-grid class="serie">
+            <ion-row>
+              <ion-col size="12" class="poster-col">
+      
+      
+                <div class="img1">
+                  <a href="serie-details/{{ SeriesNow.id }}">
+                    <img
+                      class="movie_poster"
+                      src="https://image.tmdb.org/t/p/w500/{{ SeriesNow.poster_path }}"
+                      alt=""
+                    />
+                  </a>
+                </div>
+      
+              </ion-col>
+              <ion-col>
+                <h5 class="ion-no-margin">{{ SeriesNow.name }}</h5>
+                <div class="catagory">Séries</div>
+                <p class="ion-no-margin-rate">
+                  <ion-icon name="star"></ion-icon>{{SeriesNow.popularity}}
+                </p>
+                <p class="date">{{SeriesNow.release_time}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+        </ion-slides>
+
+            <ul class="pagination">
+              
+                <ion-button
+                  (click)="changePagMinus()"
+                  class="page-link"
+                  aria-label="Anterior"
+                >
+                  <span aria-hidden="true">«</span>
+                </ion-button>
+              
+                <ion-label class="pagination"> Page: {{pag}}  </ion-label>
+              
+                <ion-button
+                  (click)="changePagPlus()"
+                  class="page-link"
+                  aria-label="Seguinte"
+                >
+                  <span aria-hidden="true">»</span>
+                </ion-button>
+              
+            </ul>
+          
+        
+
+</ion-content>
+</ion-app>
